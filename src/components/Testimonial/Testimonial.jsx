@@ -4,21 +4,21 @@ import Slider from "react-slick";
 const testimonialData = [
   {
     id: 1,
-    name: "Samuel",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
-    img: "https://picsum.photos/101/101",
+    name: "Adventure Dhaka Ltd.",
+    text: "Good Service",
+    img: "https://i.ibb.co/9nBycRD/1679468396827.jpg",
   },
   {
     id: 1,
-    name: "John Doe",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
-    img: "https://picsum.photos/102/102",
+    name: "O'dell group",
+    text: "Old Business Partner",
+    img: "https://i.ibb.co/wY1kjQC/1637949342296.jpg",
   },
   {
     id: 1,
-    name: "Smith",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
-    img: "https://picsum.photos/103/103",
+    name: "ICCL",
+    text: "International Partner",
+    img: "https://i.ibb.co/vJPQZ8s/logo.png",
   },
 ];
 
@@ -45,10 +45,6 @@ const Testimonial = () => {
               What our customers say
             </p>
             <h1 className="text-3xl font-bold">Testimonial</h1>
-            <p className="text-xs text-gray-400">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Perspiciatis delectus architecto error nesciunt,
-            </p>
           </div>
           <div
             data-aos="zoom-in"

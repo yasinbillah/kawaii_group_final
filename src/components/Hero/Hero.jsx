@@ -1,106 +1,103 @@
-import React from "react";
-import BiryaniImg1 from "../../assets/biryani3.png";
-import BiryaniImg2 from "../../assets/biryani5.png";
-import BiryaniImg3 from "../../assets/biryani2.png";
-import Vector from "../../assets/vector3.png";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import news from '../../assets/videos/sswNews.mp4';
+import office from '../../assets/videos/kawaiiOffice.mp4'
 
-const ImageList = [
+
+const videoData = [
   {
     id: 1,
-    img: BiryaniImg1,
+    videoSrc: office, 
+    // https://player.vimeo.com/video/939717220?h=81de680d4b&autoplay=1&background=1&muted=1
+    title: "OUR NEW OFFICE",
+    subtitle: "WITH ALL MODERN FACILITIES",
+    path: "/kawaiiOffice"
   },
+  // {
+  //   id: 2,
+  //   videoSrc: "https://player.vimeo.com/video/939704093?h=8ae2dd1e5a&autoplay=1&background=1&muted=1",
+  //   title: "JAPAN SSW TRAINING CENTRE",
+  //   subtitle: "The Centre plans to train 50,000 workers in the next decade, enhancing their competitiveness in the Specific Skilled Workers (SSW) sector.",
+  //   path: "/ssw"
+  // },
+  // {
+  //   id: 3,
+  //   videoSrc: "https://player.vimeo.com/video/939723499?h=66c749e068&autoplay=1&background=1&muted=1",
+  //   title: "Japan Green City",
+  //   subtitle: "Futuristic Green City",
+  //   path: "/japanGreen"
+  // },
+  // {
+  //   id: 4,
+  //   videoSrc: "https://player.vimeo.com/video/939705305?h=2debb0360a&autoplay=1&background=1&muted=1",
+  //   title: "Japan Business Center",
+  //   subtitle: "Business hub for Japan-Bangladesh Friendship projects",
+  //   path: "/japanBusiness"
+  // },
+  // {
+  //   id: 5,
+  //   videoSrc: "https://player.vimeo.com/video/939708754?badge=0&autoplay=1&player_id=0&app_id=58479&background=1&muted=1",
+  //   title: "Pachdona Business Center",
+  //   subtitle: "Business hub for Japan-Bangladesh Friendship projects",
+  //   path: "/pachdona"
+  // },
   {
-    id: 2,
-    img: BiryaniImg2,
-  },
-  {
-    id: 3,
-    img: BiryaniImg3,
-  },
+    id: 5,
+    videoSrc: news,
+    title: "Pachdona SSW Training Center Inaugeration",
+    subtitle: "Business hub for Japan-Bangladesh Friendship projects",
+    path: "/pachdona"
+  }
 ];
 
 const Hero = () => {
-  const [imageId, setImageId] = React.useState(BiryaniImg1);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-  const bgImage = {
-    backgroundImage: `url(${Vector})`,
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    height: "100%",
-    width: "100%",
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentVideoIndex(prevIndex => (prevIndex + 1) % videoData.length);
+    }, 5000); // Change videos every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []); // Empty dependency array ensures this runs once on mount and never again
+
+  const { videoSrc, title, subtitle, path } = videoData[currentVideoIndex];
 
   return (
-    <>
-      <div
-        className="min-h-[550px] sm:min-h-[600px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200"
-        style={bgImage}
+    <div className="relative w-full h-screen overflow-hidden">
+      <video
+        key={videoSrc} // Change key every time the videoSrc changes
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
+        style={{ objectFit: 'cover', top: 0, left: 0 }}
       >
-        <div className="container pb-8 sm:pb-0">
-          <div className="grid grid-cols-1 sm:grid-cols-2">
-            {/* text content section */}
-            <div
-              data-aos="zoom-out"
-              data-aos-duration="400"
-              data-aos-once="true"
-              className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1"
+        <source src={videoSrc} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div className='bg-black/30 absolute top-0 left-0 w-full h-screen' />
+      <div className='absolute top-0 w-full h-full flex flex-col justify-center text-white'>
+        <div className='md:left-[10%] max-w-[1100px] m-auto absolute p-4'>
+          <h1 className='font-bold text-5xl md:text-7xl drop-shadow-2xl'>
+            {title}
+          </h1>
+          <p className='max-w-[600px] drop-shadow-2xl py-2 text-xl'>
+            {subtitle}
+          </p>
+          <div className="text-left">
+            <Link
+              to={path}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-lg hover:shadow transition duration-300 ease-in-out transform hover:-translate-y-1"
             >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold">
-                Welcome{" "}
-                <span class="bg-clip-text text-transparent bg-gradient-to-b from-primary to-secondary">
-                  Foodie
-                </span>{" "}
-                Zone
-              </h1>
-              <p className="text-sm ">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque
-                reiciendis inventore iste ratione ex alias quis magni at optio
-              </p>
-              <div>
-                <button className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-2 px-4 rounded-full">
-                  Order Now
-                </button>
-              </div>
-            </div>
-            {/* Image section */}
-            <div className="min-h-[450px] sm:min-h-[450px] flex justify-center items-center relative order-1 sm:order-2 ">
-              <div className="h-[300px] sm:h-[450px] overflow-hidden flex justify-center items-center">
-                <img
-                  data-aos="zoom-in"
-                  data-aos-duration="300"
-                  data-aos-once="true"
-                  src={imageId}
-                  alt="biryani img"
-                  className="w-[300px] sm:w-[450px] sm:scale-125  mx-auto spin "
-                />
-              </div>
-              <div className="flex lg:flex-col lg:top-1/2 lg:-translate-y-1/2 lg:py-2 justify-center gap-4 absolute bottom-[0px] lg:-right-10 bg-white/30 rounded-full">
-                {ImageList.map((item) => (
-                  <img
-                    data-aos="zoom-in"
-                    data-aos-duration="400"
-                    data-aos-once="true"
-                    src={item.img}
-                    onClick={() => {
-                      setImageId(
-                        item.id === 1
-                          ? BiryaniImg1
-                          : item.id === 2
-                          ? BiryaniImg2
-                          : BiryaniImg3
-                      );
-                    }}
-                    alt="biryani img"
-                    className="max-w-[80px] h-[80px] object-contain inline-block hover:scale-105 duration-200"
-                  />
-                ))}
-              </div>
-            </div>
+              Learn More
+            </Link>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,6 @@
 {
   "name": "10_project_biryani-shop",
+  "homepage": "https://kawaiibd.com/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,12 +12,17 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "country-flag-icons": "^1.5.11",
     "react": "^18.2.0",
+    "react-countup": "^6.5.3",
     "react-dom": "^18.2.0",
+    "react-flagkit": "^2.0.4",
     "react-icons": "^4.12.0",
+    "react-router-dom": "^6.23.0",
     "react-slick": "^0.29.0",
     "react-star-ratings": "^2.3.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tw-elements-react": "^1.0.0-alpha2"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

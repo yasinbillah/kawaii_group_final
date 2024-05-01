@@ -1,14 +1,18 @@
+// App.jsx
 import React from "react";
-import Hero from "./components/Hero/Hero";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import Services from "./components/Services/Services.jsx";
-import Banner from "./components/Banner/Banner.jsx";
-import AppStore from "./components/AppStore/AppStore.jsx";
-import CoverBanner from "./components/CoverBanner/CoverBanner.jsx";
-import Testimonial from "./components/Testimonial/Testimonial.jsx";
-import Footer from "./components/Footer/Footer.jsx";
+import Home from "./Pages/Home/Home";  // Assuming you'll create Home.jsx in ./Pages/Home
+import About from "./Pages/About/About";  // Assuming you'll create Home.jsx in ./Pages/Home
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Footer from "./components/Footer/Footer";
+import Ssw from "./Pages/japanSsw/japanSsw";
+import Gallery from "./Pages/Gallery/Gallery";
+import Contact from "./Pages/Contact/Contact";
+import CareerForm from "./Pages/CareerForm/CareerForm";
+import News from "./Pages/News/News";
+import Construction from "./Pages/Construction/Construction";
 
 const App = () => {
   React.useEffect(() => {
@@ -24,12 +28,17 @@ const App = () => {
   return (
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200">
       <Navbar />
-      <Hero />
-      <Services />
-      <Banner />
-      {/* <CoverBanner /> */}
-      <AppStore />
-      <Testimonial />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/japan-world-ssw-training-center-ltd" element={<Ssw />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/career" element={<CareerForm />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/kawaii-construction" element={<Construction />} />
+        {/* Additional routes for other pages can be added here */}
+      </Routes>
       <Footer />
     </div>
   );
